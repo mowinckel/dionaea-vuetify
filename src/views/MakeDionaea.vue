@@ -3,8 +3,8 @@
     <v-content>
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" md="4">
-            <v-card class="elevation-6">
+          <v-col cols="12" sm="8" md="7" lg="5">
+            <v-card>
               <v-toolbar color="deep-purple accent-2" dark flat dense>
                 <v-toolbar-title>Make trap</v-toolbar-title>
               </v-toolbar>
@@ -42,6 +42,19 @@
               </v-card-actions>
             </v-card>
           </v-col>
+          <v-col cols="12" sm="8" md="7" lg="5">
+            <v-card>
+              <template v-for="item in trapList">
+                <v-list-item :key="item.shorten_key">
+                  <v-list-item-content>
+                    <v-list-item-title>{{ item.target_url }}</v-list-item-title>
+                    <v-list-item-subtitle>{{ item.shorten_key }}</v-list-item-subtitle>
+                    <!-- <v-list-item-subtitle>{{ item.memo }}</v-list-item-subtitle> -->
+                  </v-list-item-content>
+                </v-list-item>
+              </template>
+            </v-card>
+          </v-col>
         </v-row>
       </v-container>
     </v-content>
@@ -52,7 +65,9 @@
 export default {
   data: () => ({
     form: false,
-    jwt: undefined,
+    jwt:
+      "jwt eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InJ1bW8iLCJleHAiOjE1NzU1NTAxOTYsImVtYWlsIjoiYXJmcnVtb0BnbWFpbC5jb20iLCJvcmlnX2lhdCI6MTU3NTQ2Mzc5Nn0.AaP830aqCSqJbsVN3XEx8qi5t5tU8NHlF-3mPEYZpDs",
+    trapList: [],
     trapURL: undefined,
     expiration: ["10min", "20min", "30min", "1hour"],
     targetURL: undefined,
@@ -64,6 +79,15 @@ export default {
       }
     ]
   }),
+  mounted: function() {
+    this.$axios
+      .get("/api/v1/trap/", {
+        headers: { Authorization: this.jwt }
+      })
+      .then(response => {
+        this.trapList = response.data.results;
+      });
+  },
   methods: {
     copy: () => {
       let copyURL = document.querySelector("#trapURL");
@@ -81,8 +105,7 @@ export default {
           },
           {
             headers: {
-              Authorization:
-                "jwt eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InJ1bW8iLCJleHAiOjE1NzU1NTAxOTYsImVtYWlsIjoiYXJmcnVtb0BnbWFpbC5jb20iLCJvcmlnX2lhdCI6MTU3NTQ2Mzc5Nn0.AaP830aqCSqJbsVN3XEx8qi5t5tU8NHlF-3mPEYZpDs"
+              Authorization: this.jwt
             }
           }
         )
