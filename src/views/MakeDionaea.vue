@@ -1,39 +1,51 @@
 <template>
-  <v-card class="mx-auto" style="max-width: 500px;">
-    <v-toolbar color="deep-purple accent-4" cards dark flat>
-      <v-card-title class="title font-weight-regular">Make Dionaea</v-card-title>
-      <v-spacer></v-spacer>
-    </v-toolbar>
-    <v-form ref="form" v-model="form" class="pa-4 pt-6">
-      <v-textarea
-        v-model="targetURL"
-        color="deep-purple"
-        label="Target URL"
-        :rules="rules"
-        auto-grow
-        outlined
-        rows="1"
-      ></v-textarea>
-      <v-textarea outlined label="Trap URL" rows="3" :value="trapURL"></v-textarea>
-      <v-select
-        v-model="select"
-        :items="expiration"
-        :rules="[v => !!v || 'Item is required']"
-        label="expiration after"
-        required
-      ></v-select>
-    </v-form>
-    <v-card-actions>
-      <v-spacer></v-spacer>
-      <v-btn
-        :disabled="!form"
-        class="white--text"
-        color="deep-purple accent-4"
-        depressed
-        @click="submit()"
-      >Submit</v-btn>
-    </v-card-actions>
-  </v-card>
+  <v-app id="inspire">
+    <v-content>
+      <v-container class="fill-height" fluid>
+        <v-row align="center" justify="center">
+          <v-col cols="12" sm="8" md="4">
+            <v-card class="elevation-6">
+              <v-toolbar color="deep-purple accent-2" dark flat dense>
+                <v-toolbar-title>Make trap</v-toolbar-title>
+              </v-toolbar>
+              <v-card-text>
+                <v-form>
+                  <v-text-field
+                    v-model="targetURL"
+                    color="deep-purple"
+                    label="target URL"
+                    name="targetURL"
+                    :rules="rules"
+                    outlined
+                  />
+                  <v-text-field
+                    id="trapURL"
+                    v-model="trapURL"
+                    v-show="trapURL"
+                    color="deep-purple"
+                    label="shorten URL"
+                    name="shortenURL"
+                    outlined
+                  />
+                </v-form>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer />
+                <v-btn
+                  v-show="trapURL"
+                  @click="copy()"
+                  color="deep-purple accent-2"
+                  dark
+                  outlined
+                >Copy</v-btn>
+                <v-btn @click="submit()" color="deep-purple accent-2" dark depressed>Submit</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
@@ -53,6 +65,13 @@ export default {
     ]
   }),
   methods: {
+    copy: () => {
+      let copyURL = document.querySelector("#trapURL");
+      copyURL.setAttribute("type", "text");
+      copyURL.select();
+
+      document.execCommand("copy");
+    },
     submit: function() {
       this.$axios
         .post(
@@ -63,7 +82,7 @@ export default {
           {
             headers: {
               Authorization:
-                "jwt eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InJ1bW8iLCJleHAiOjE1NzU0NjMwMTYsImVtYWlsIjoiYXJmcnVtb0BnbWFpbC5jb20iLCJvcmlnX2lhdCI6MTU3NTM3NjYxNn0.CBrmLpKXxXY5ZQQYVxDdGGVFBy_xK6C4_OyBBOwHZW4"
+                "jwt eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InJ1bW8iLCJleHAiOjE1NzU1NTAxOTYsImVtYWlsIjoiYXJmcnVtb0BnbWFpbC5jb20iLCJvcmlnX2lhdCI6MTU3NTQ2Mzc5Nn0.AaP830aqCSqJbsVN3XEx8qi5t5tU8NHlF-3mPEYZpDs"
             }
           }
         )
@@ -81,8 +100,8 @@ export default {
     getJWT: function() {
       this.$axios
         .get("/api/v1/jwt/", {
-          username: "rumo",
-          password: "tardis21!"
+          username: "",
+          password: ""
         })
         .then(response => {
           this.jwt = response.data;
