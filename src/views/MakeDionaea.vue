@@ -9,7 +9,7 @@
                 <v-toolbar-title>Make trap</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <v-form>
+                <v-form v-model="form">
                   <v-text-field
                     v-model="targetURL"
                     color="deep-purple"
@@ -38,7 +38,13 @@
                   dark
                   outlined
                 >Copy</v-btn>
-                <v-btn @click="submit()" color="deep-purple accent-2" dark depressed>Submit</v-btn>
+                <v-btn
+                  @click="submit()"
+                  color="deep-purple accent-2"
+                  class="white--text"
+                  :disabled="!form"
+                  depressed
+                >Submit</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
