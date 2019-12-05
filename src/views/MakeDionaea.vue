@@ -106,17 +106,9 @@ export default {
     },
     submit: function() {
       this.$axios
-        .post(
-          `${process.env.VUE_APP_BACKEND_URL}/api/v1/trap/`,
-          {
-            target_url: this.targetURL
-          },
-          {
-            headers: {
-              Authorization: this.jwt
-            }
-          }
-        )
+        .post(`${process.env.VUE_APP_BACKEND_URL}/api/v1/trap/`, {
+          target_url: this.targetURL
+        })
         .then(response => {
           this.trapURL = `${document.domain}/trap/${response.data.shorten_key}`;
         })
