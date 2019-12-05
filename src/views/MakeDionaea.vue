@@ -110,7 +110,7 @@ export default {
           target_url: this.targetURL
         })
         .then(response => {
-          this.trapURL = `${document.domain}/trap/${response.data.shorten_key}`;
+          this.trapURL = `https://${document.domain}/trap/${response.data.shorten_key}`;
         })
         .catch(error => {
           /* eslint-disable no-console */
