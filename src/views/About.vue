@@ -1,29 +1,45 @@
 <template>
-  <h3>{{ userAgent }}</h3>
+  <div>
+    <h3>{{ userAgent }}</h3>
+    <h3>{{ ipAddress }}</h3>
+  </div>
 </template>
 
 <script>
 export default {
+  metaInfo: {
+    meta: [
+      { property: "og:title", content: "test" },
+      { property: "og:image", content: "test" },
+      { property: "og:description", content: "test" }
+    ]
+  },
   data: () => ({
-    targetURL: undefined,
     userAgent: window.navigator.userAgent,
-    metaInfo: {
-      meta: [
-        { property: "og:title", content: "test" },
-        { property: "og:image", content: "test" },
-        { property: "og:description", content: "test" }
-      ]
-    }
+    ipAddress: undefined
   }),
-  mounted: function() {
-    this.$axios
-      .get(
+  mounted: async function() {
+    try {
+      let response = await this.$axios.get("https://api.ipify.org?format=json");
+      this.ipAddress = response.data.ip;
+
+      response = await this.$axios.get(
         `${process.env.VUE_APP_BACKEND_URL}/api/v1/trap/${this.$route.params.key}`
-      )
-      .then(response => {
-        this.targetURL = response.data.target_url;
-        window.location.href = this.targetURL;
-      });
+      );
+
+      await this.$axios.post(
+        `${process.env.VUE_APP_BACKEND_URL}/api/v1/test/`,
+        {
+          shorten_key: this.$route.params.key,
+          ip_address: this.ipAddress,
+          user_agent: this.userAgent
+        }
+      );
+      window.location.href = response.data.target_url;
+    } catch (error) {
+      /* eslint-disable no-console */
+      console.log(error);
+    }
   }
 };
 </script>
