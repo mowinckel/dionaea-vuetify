@@ -17,6 +17,7 @@
                     name="targetURL"
                     :rules="rules"
                     outlined
+                    @keypress.enter="submit()"
                   />
                   <v-text-field
                     id="trapURL"
@@ -51,11 +52,10 @@
           <v-col cols="12" sm="8" md="7" lg="5">
             <v-card>
               <template v-for="item in trapList">
-                <v-list-item :key="item.shorten_key">
+                <v-list-item :key="item.shorten_key" @click="detail()">
                   <v-list-item-content>
-                    <v-list-item-title>{{ item.target_url }}</v-list-item-title>
-                    <v-list-item-subtitle>{{ item.shorten_key }}</v-list-item-subtitle>
-                    <!-- <v-list-item-subtitle>{{ item.memo }}</v-list-item-subtitle> -->
+                    <v-list-item-title>https://{{ base_url }}/trap/{{ item.shorten_key }}</v-list-item-title>
+                    <v-list-item-subtitle>{{ item.target_url }}</v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
               </template>
@@ -71,6 +71,7 @@
 export default {
   data: () => ({
     form: false,
+    base_url: document.domain,
     jwt:
       "jwt eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InJ1bW8iLCJleHAiOjE1NzU1NTAxOTYsImVtYWlsIjoiYXJmcnVtb0BnbWFpbC5jb20iLCJvcmlnX2lhdCI6MTU3NTQ2Mzc5Nn0.AaP830aqCSqJbsVN3XEx8qi5t5tU8NHlF-3mPEYZpDs",
     trapList: [],
@@ -105,18 +106,26 @@ export default {
       document.execCommand("copy");
     },
     submit: function() {
-      this.$axios
-        .post(`${process.env.VUE_APP_BACKEND_URL}/api/v1/trap/`, {
-          target_url: this.targetURL
-        })
-        .then(response => {
-          this.trapURL = `https://${document.domain}/trap/${response.data.shorten_key}`;
-        })
-        .catch(error => {
-          /* eslint-disable no-console */
-          console.log(error);
-        });
+      if (this.form) {
+        this.$axios
+          .post(`${process.env.VUE_APP_BACKEND_URL}/api/v1/trap/`, {
+            target_url: this.targetURL
+          })
+          .then(response => {
+            this.trapURL = `https://${document.domain}/trap/${response.data.shorten_key}`;
+            this.trapList.unshift({
+              target_url: this.targetURL,
+              shorten_key: response.data.shorten_key
+            });
+          })
+          .catch(error => {
+            /* eslint-disable no-console */
+            console.log(error);
+          });
+      }
     },
+
+    detail: function() {},
 
     getJWT: function() {
       this.$axios
