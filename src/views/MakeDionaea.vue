@@ -87,9 +87,7 @@ export default {
   }),
   mounted: function() {
     this.$axios
-      .get(`${process.env.VUE_APP_BACKEND_URL}/api/v1/trap/`, {
-        headers: { Authorization: this.jwt }
-      })
+      .get(`${process.env.VUE_APP_BACKEND_URL}/api/v1/trap/`)
       .then(response => {
         this.trapList = response.data.results;
       });
@@ -116,7 +114,7 @@ export default {
           }
         )
         .then(response => {
-          this.trapURL = `http://${document.domain}/trap/${response.data.shorten_key}`;
+          this.trapURL = `${document.domain}/trap/${response.data.shorten_key}`;
         })
         .catch(error => {
           /* eslint-disable no-console */
