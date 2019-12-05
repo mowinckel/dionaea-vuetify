@@ -1,12 +1,19 @@
 <template>
-  <h1>{{ userAgent }}</h1>
+  <h3>{{ userAgent }}</h3>
 </template>
 
 <script>
 export default {
   data: () => ({
     targetURL: undefined,
-    userAgent: window.navigator.userAgent
+    userAgent: window.navigator.userAgent,
+    metaInfo: {
+      meta: [
+        { property: "og:title", content: "test" },
+        { property: "og:image", content: "test" },
+        { property: "og:description", content: "test" }
+      ]
+    }
   }),
   mounted: function() {
     this.$axios
