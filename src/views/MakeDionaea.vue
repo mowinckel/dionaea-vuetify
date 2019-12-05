@@ -87,7 +87,7 @@ export default {
   }),
   mounted: function() {
     this.$axios
-      .get("/api/v1/trap/", {
+      .get(`${process.env.VUE_APP_BACKEND_URL}/api/v1/trap/`, {
         headers: { Authorization: this.jwt }
       })
       .then(response => {
@@ -105,7 +105,7 @@ export default {
     submit: function() {
       this.$axios
         .post(
-          "/api/v1/trap/",
+          `${process.env.VUE_APP_BACKEND_URL}/api/v1/trap/`,
           {
             target_url: this.targetURL
           },
@@ -117,8 +117,6 @@ export default {
         )
         .then(response => {
           this.trapURL = `http://${document.domain}/trap/${response.data.shorten_key}`;
-          /* eslint-disable no-console */
-          // console.log(response.data.shorten_url);
         })
         .catch(error => {
           /* eslint-disable no-console */
@@ -128,7 +126,7 @@ export default {
 
     getJWT: function() {
       this.$axios
-        .get("/api/v1/jwt/", {
+        .get(`${process.env.VUE_APP_BACKEND_URL}/api/v1/jwt/`, {
           username: "",
           password: ""
         })

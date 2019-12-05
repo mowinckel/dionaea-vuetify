@@ -10,15 +10,12 @@ export default {
   }),
   mounted: function() {
     this.$axios
-      .get(`/api/v1/trap/${this.$route.params.key}`, {
-        headers: {
-          Authorization:
-            "jwt eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InJ1bW8iLCJleHAiOjE1NzU0NjMwMTYsImVtYWlsIjoiYXJmcnVtb0BnbWFpbC5jb20iLCJvcmlnX2lhdCI6MTU3NTM3NjYxNn0.CBrmLpKXxXY5ZQQYVxDdGGVFBy_xK6C4_OyBBOwHZW4"
-        }
-      })
+      .get(
+        `${process.env.VUE_APP_BACKEND_URL}/api/v1/trap/${this.$route.params.key}`
+      )
       .then(response => {
         this.targetURL = response.data.target_url;
-        // window.location.href = this.targetURL;
+        window.location.href = this.targetURL;
       });
   }
 };
