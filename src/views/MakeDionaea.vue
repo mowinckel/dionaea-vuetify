@@ -90,6 +90,10 @@ export default {
       .get(`${process.env.VUE_APP_BACKEND_URL}/api/v1/trap/`)
       .then(response => {
         this.trapList = response.data.results;
+      })
+      .catch(error => {
+        /* eslint-disable no-console */
+        console.log(error);
       });
   },
   methods: {
