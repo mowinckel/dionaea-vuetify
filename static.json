@@ -2,7 +2,7 @@
     "root": "dist",
     "clean_urls": true,
     "routes": {
-        "/**": "index",
-        "/trap/**": "http://dionaea-backend.herokuapp.com/api/v1/trap/$1"
+        "/**": "index.html",
+        "/trap/**": "https://${VUE_APP_BACKEND_URL}/api/v1/trap/"
     }
 }
