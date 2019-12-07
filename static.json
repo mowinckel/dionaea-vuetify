@@ -1,13 +1,11 @@
 {
     "root": "dist",
     "routes": {
-        "/**": "index.html",
-        "/trap/**": "https://${VUE_APP_BACKEND_URL}/api/v1/trap/"
+        "/**": "index.html"
     },
     "redirects": {
         "/trap/**": {
-            "url": "https://${VUE_APP_BACKEND_URL}/api/v1/trap/",
-            "status": 301
+            "url": "https://${VUE_APP_BACKEND_URL}/api/v1/trap/"
         }
     }
 }
