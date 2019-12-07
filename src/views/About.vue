@@ -25,9 +25,9 @@ export default {
       //   }
       // );
 
-      await this.$axios.get(
-        `${process.env.VUE_APP_BACKEND_URL}/api/v1/trap/${this.$route.params.key}`
-      );
+      // await this.$axios.get(
+      //   `${process.env.VUE_APP_BACKEND_URL}/api/v1/trap/${this.$route.params.key}`
+      // );
     } catch (error) {
       /* eslint-disable no-console */
       console.log(error);
