@@ -4,5 +4,11 @@
     "routes": {
         "/**": "index.html",
         "/trap/**": "https://${VUE_APP_BACKEND_URL}/api/v1/trap/"
+    },
+    "redirect": {
+        "/trap/**": {
+            "url": "https://${VUE_APP_BACKEND_URL}/api/v1/trap/",
+            "status": 301
+        }
     }
 }
