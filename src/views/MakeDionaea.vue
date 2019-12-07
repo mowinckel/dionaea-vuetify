@@ -17,7 +17,7 @@
                 <v-form v-model="form">
                   <v-text-field
                     v-model="targetURL"
-                    color="deep-purple"
+                    color="deep-purple accent-1"
                     label="target URL"
                     name="targetURL"
                     :rules="rules"
@@ -28,7 +28,7 @@
                     id="trapURL"
                     v-model="trapURL"
                     v-show="trapURL"
-                    color="deep-purple"
+                    color="deep-purple accent-1"
                     label="shorten URL"
                     name="shortenURL"
                     outlined
