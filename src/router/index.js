@@ -9,11 +9,11 @@ const routes = [{
     name: 'home',
     component: Home
   },
-  {
-    path: '/trap/:key',
-    name: 'about',
-    component: () => import('../views/About.vue')
-  },
+  // {
+  //   path: '/trap/:key',
+  //   name: 'about',
+  //   component: () => import('../views/About.vue')
+  // },
   {
     path: '/make',
     name: 'dionaea',
