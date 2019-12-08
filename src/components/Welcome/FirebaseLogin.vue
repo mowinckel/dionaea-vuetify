@@ -9,9 +9,10 @@
                 class="mb-3 text-lowercase"
                 large
                 block
+                dark
                 color="deep-purple darken-4"
               >Login with Github</v-btn>
-              <v-btn class="text-lowercase" large block color="blue accent-2">Login with Google</v-btn>
+              <v-btn class="text-lowercase" dark large block color="blue accent-2">Login with Google</v-btn>
             </v-col>
             <v-col cols="11">
               <v-divider light class="mb-8"></v-divider>

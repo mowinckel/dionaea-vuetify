@@ -5,16 +5,19 @@ import WelcomePage from '@/views/WelcomePage.vue'
 Vue.use(VueRouter)
 
 const routes = [{
-    path: '/',
-    name: 'home',
-    component: WelcomePage
-  },
-  {
-    path: '/make',
-    name: 'dionaea',
-    component: () => import('../views/MakeDionaea.vue')
-  }
-]
+  path: '/',
+  name: 'home',
+  component: WelcomePage
+}, {
+  path: '/make',
+  name: 'dionaea',
+  component: () => import('../views/MakeDionaea.vue')
+}, {
+  path: '/craft',
+  component: () => import('../views/CraftingPage.vue')
+}, {
+  path: '/about'
+}]
 
 const router = new VueRouter({
   mode: 'history',
