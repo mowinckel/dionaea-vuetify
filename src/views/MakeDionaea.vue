@@ -1,10 +1,5 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar app clipped-right color="deep-purple" dark>
-      <v-toolbar-title>Toolbar</v-toolbar-title>
-      <v-spacer />
-      <v-switch hide-details v-model="$vuetify.theme.dark"></v-switch>
-    </v-app-bar>
     <v-content>
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
