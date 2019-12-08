@@ -1,13 +1,21 @@
 <template>
-  <FirebaseLogin />
+  <v-container>
+    <Title />
+    <FirebaseLogin />
+    <Ad />
+  </v-container>
 </template>
 
 <script>
-import FirebaseLogin from "@/components/FirebaseLogin";
+import Title from "@/components/Welcome/Title";
+import FirebaseLogin from "@/components/Welcome/FirebaseLogin";
+import Ad from "@/components/Welcome/Ad";
 
 export default {
   components: {
-    FirebaseLogin
+    FirebaseLogin,
+    Ad,
+    Title
   }
 };
 </script>
