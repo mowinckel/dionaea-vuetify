@@ -15,7 +15,7 @@ http {
 
   server_tokens off;
 
-  log_format l2met 'measure#nginx.service=$request_time request_id=$http_x_request_id user_agent=$http_user_agent http_referer=$http_referer';
+  log_format l2met 'nginx.service=$request_time request_id=$http_x_request_id remote_addr=$remote_addr user_agent=$http_user_agent http_referer=$http_referer';
   access_log <%= ENV['NGINX_ACCESS_LOG_PATH'] || 'logs/nginx/access.log' %> l2met;
   error_log <%= ENV['NGINX_ERROR_LOG_PATH'] || 'logs/nginx/error.log' %>;
 
