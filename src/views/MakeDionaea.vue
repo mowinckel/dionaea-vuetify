@@ -3,7 +3,7 @@
     <v-content>
       <v-container fluid>
         <v-row align="center" justify="center">
-          <v-col cols="6">
+          <v-col cols="7" lg="5">
             <v-card>
               <v-toolbar color="deep-purple accent-2" dark flat dense>
                 <v-toolbar-title>Make trap</v-toolbar-title>
@@ -18,6 +18,7 @@
                     :rules="rules"
                     outlined
                     @keypress.enter="submit()"
+                    dense
                   />
                   <v-text-field
                     id="trapURL"
@@ -27,6 +28,8 @@
                     label="shorten URL"
                     name="shortenURL"
                     outlined
+                    dense
+                    hide-details
                   />
                 </v-form>
               </v-card-text>
@@ -35,7 +38,7 @@
                 <v-btn
                   v-show="trapURL"
                   @click="copy()"
-                  color="deep-purple accent-2"
+                  color="deep-purple accent-1"
                   dark
                   outlined
                 >Copy</v-btn>
@@ -51,22 +54,24 @@
           </v-col>
         </v-row>
         <v-row align="center" justify="center">
-          <v-col cols="6">
+          <v-col cols="7" lg="5">
             <v-card>
-              <template v-for="item in trapList">
-                <v-list-item three-line :key="item.shorten_key" @click="detail(item.shorten_key)">
-                  <v-list-item-content>
-                    <v-list-item-title>https://{{ base_url }}/trap/{{ item.shorten_key }}</v-list-item-title>
-                    <v-list-item-subtitle>{{ item.target_url }}</v-list-item-subtitle>
-                    <v-list-item-subtitle>{{ item.created_at }}</v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-              </template>
+              <v-list class="overflow-y-auto" max-height="350px">
+                <template v-for="item in trapList">
+                  <v-list-item three-line :key="item.shorten_key" @click="detail(item.shorten_key)">
+                    <v-list-item-content>
+                      <v-list-item-title>https://{{ base_url }}/trap/{{ item.shorten_key }}</v-list-item-title>
+                      <v-list-item-subtitle>{{ item.target_url }}</v-list-item-subtitle>
+                      <v-list-item-subtitle>{{ item.created_at }}</v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                </template>
+              </v-list>
             </v-card>
           </v-col>
         </v-row>
         <v-row align="center" justify="center">
-          <v-col cols="6">
+          <v-col cols="7" lg="5">
             <v-card>
               <template v-for="item in information">
                 <v-list-item three-line :key="item.id">
@@ -149,7 +154,7 @@ export default {
 
     detail: function(shorten_key) {
       this.$axios
-        .get(`${process.env.VUE_APP_BACKEND_URL}/api/v1/test/${shorten_key}`)
+        .get(`${process.env.VUE_APP_BACKEND_URL}/api/v1/prey/${shorten_key}`)
         .then(response => {
           this.information = response.data;
         });
