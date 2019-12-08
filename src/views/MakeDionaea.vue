@@ -1,9 +1,9 @@
 <template>
   <v-app id="inspire">
     <v-content>
-      <v-container class="fill-height" fluid>
+      <v-container fluid>
         <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" md="7" lg="5">
+          <v-col cols="6">
             <v-card>
               <v-toolbar color="deep-purple accent-2" dark flat dense>
                 <v-toolbar-title>Make trap</v-toolbar-title>
@@ -51,7 +51,7 @@
           </v-col>
         </v-row>
         <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" md="7" lg="5">
+          <v-col cols="6">
             <v-card>
               <template v-for="item in trapList">
                 <v-list-item three-line :key="item.shorten_key" @click="detail(item.shorten_key)">
@@ -66,7 +66,7 @@
           </v-col>
         </v-row>
         <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" md="7" lg="5">
+          <v-col cols="6">
             <v-card>
               <template v-for="item in information">
                 <v-list-item three-line :key="item.id">
@@ -153,7 +153,6 @@ export default {
         .then(response => {
           this.information = response.data;
         });
-      // .catch(error => {});
     },
 
     getJWT: function() {
