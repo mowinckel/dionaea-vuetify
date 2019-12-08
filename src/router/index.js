@@ -10,11 +10,6 @@ const routes = [{
     component: Home
   },
   {
-    path: '/trap/:key',
-    name: 'about',
-    component: () => import('../views/About.vue')
-  },
-  {
     path: '/make',
     name: 'dionaea',
     component: () => import('../views/MakeDionaea.vue')
