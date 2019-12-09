@@ -1,6 +1,6 @@
 <template>
   <v-row align="center" justify="center">
-    <v-col cols="6" lg="4">
+    <v-col lg="5" sm="6">
       <v-card color="grey lighten-4">
         <v-container fluid>
           <v-row justify="center">

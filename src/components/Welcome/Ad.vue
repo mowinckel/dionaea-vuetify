@@ -1,13 +1,9 @@
 <template>
   <v-row justify="center">
-    <v-col cols="6" lg="4">
-      <v-card color="blue-grey darken-3" flat>
+    <v-col cols="6" lg="4" sm="12">
+      <v-card color="blue-grey darken-3" flat dark>
         <v-card-text>
-          <div>Word of the Day</div>
-          <div class="text--primary">
-            well meaning and kindly.
-            <br />"a benevolent smile"
-          </div>
+          <div></div>
         </v-card-text>
       </v-card>
     </v-col>
