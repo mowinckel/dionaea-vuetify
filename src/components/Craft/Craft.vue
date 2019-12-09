@@ -118,7 +118,7 @@ export default {
     skeleton_loading: true,
     jwt:
       "jwt eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InJ1bW8iLCJleHAiOjE1NzU1NTAxOTYsImVtYWlsIjoiYXJmcnVtb0BnbWFpbC5jb20iLCJvcmlnX2lhdCI6MTU3NTQ2Mzc5Nn0.AaP830aqCSqJbsVN3XEx8qi5t5tU8NHlF-3mPEYZpDs",
-    trapList: [],
+    trapList: [{}, {}, {}, {}],
     trapURL: undefined,
     expiration: ["10min", "20min", "30min", "1hour"],
     targetURL: undefined,
