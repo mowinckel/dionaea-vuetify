@@ -3,7 +3,7 @@
     <v-content>
       <v-container fluid>
         <v-row align="center" justify="center">
-          <v-col xs="12">
+          <v-col lg="5" sm="8" xs="12">
             <v-card>
               <v-toolbar color="deep-purple accent-2" dark flat dense>
                 <v-toolbar-title>Make trap</v-toolbar-title>
@@ -56,13 +56,12 @@
           </v-col>
         </v-row>
         <v-row align="center" justify="center">
-          <v-col lg="4" sm="12">
+          <v-col lg="5" sm="8" xs="12">
             <v-sheet>
               <v-list class="overflow-y-auto" max-height="350px">
                 <template v-for="item in trapList">
                   <v-skeleton-loader
                     :loading="skeleton_loading"
-                    :transition="fade-transition"
                     type="list-item-three-line"
                     :key="item.shorten_key"
                   >
