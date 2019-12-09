@@ -167,6 +167,7 @@ export default {
               target_url: this.targetURL,
               shorten_key: response.data.shorten_key
             });
+            this.targetURL = undefined;
           })
           .catch(error => {
             /* eslint-disable no-console */
