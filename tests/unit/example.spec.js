@@ -1,12 +1,13 @@
 import {
   shallowMount
 } from '@vue/test-utils'
-import HelloWorld from '@/components/HelloWorld.vue'
+import FirebaseLogin from '@/components/FirebaseLogin.vue'
 
-describe('HelloWorld.vue', () => {
+describe('FireBaseLogin.vue', () => {
   it('renders props.msg when passed', () => {
-    const msg = 'new message'
-    const wrapper = shallowMount(HelloWorld, {
+    const msg = 'Dionaea simple shorten url service'
+
+    const wrapper = shallowMount(FirebaseLogin, {
       propsData: {
         msg
       }

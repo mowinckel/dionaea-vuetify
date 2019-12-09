@@ -1,20 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import WelcomePage from '@/views/WelcomePage.vue'
 
 Vue.use(VueRouter)
 
 const routes = [{
-    path: '/',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/make',
-    name: 'dionaea',
-    component: () => import('../views/MakeDionaea.vue')
-  }
-]
+  path: '/',
+  name: 'home',
+  component: WelcomePage
+}, {
+  path: '/make',
+  name: 'dionaea',
+  component: () => import('../views/MakeDionaea.vue')
+}, {
+  path: '/craft',
+  component: () => import('../views/CraftingPage.vue')
+}, {
+  path: '/about'
+}]
 
 const router = new VueRouter({
   mode: 'history',
