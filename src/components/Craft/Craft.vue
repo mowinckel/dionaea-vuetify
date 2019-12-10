@@ -57,7 +57,7 @@
         </v-row>
         <v-row align="center" justify="center">
           <v-col lg="5" sm="8" xs="12">
-            <v-sheet>
+            <v-card>
               <v-list class="overflow-y-auto" max-height="350px">
                 <template v-for="item in trapList">
                   <v-skeleton-loader
@@ -78,7 +78,7 @@
                   </v-skeleton-loader>
                 </template>
               </v-list>
-            </v-sheet>
+            </v-card>
           </v-col>
         </v-row>
         <v-row align="center" justify="center">
