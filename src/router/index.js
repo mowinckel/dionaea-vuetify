@@ -11,7 +11,7 @@ const routes = [{
 }, {
   path: '/make',
   name: 'dionaea',
-  component: () => import('../views/MakeDionaea.vue')
+  component: () => import('../views/CraftingPage.vue')
 }, {
   path: '/craft',
   component: () => import('../views/CraftingPage.vue')

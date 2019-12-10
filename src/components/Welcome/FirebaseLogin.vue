@@ -1,7 +1,7 @@
 <template>
   <v-row align="center" justify="center">
     <v-col lg="5" sm="6">
-      <v-card color="grey lighten-4">
+      <v-card light>
         <v-container fluid>
           <v-row justify="center">
             <v-col cols="11">
@@ -10,9 +10,16 @@
                 large
                 block
                 dark
-                color="deep-purple darken-4"
+                color="deep-purple darken-2"
               >Login with Github</v-btn>
-              <v-btn class="text-lowercase" dark large block color="blue accent-2">Login with Google</v-btn>
+              <v-btn
+                @click="google()"
+                class="text-lowercase"
+                dark
+                large
+                block
+                color="blue accent-2"
+              >Login with Google</v-btn>
             </v-col>
             <v-col cols="11">
               <v-divider light class="mb-8"></v-divider>
@@ -36,7 +43,23 @@
 </template>
 
 <script>
+import firebase from "firebase/app";
+
 export default {
-  data: () => ({})
+  data: () => ({}),
+  methods: {
+    google: function() {
+      this.$store.dispatch(
+        "signInAction",
+        new firebase.auth.GoogleAuthProvider()
+      );
+    },
+    github: function() {
+      this.$store.dispatch(
+        "signInAction",
+        new firebase.auth.GithubAuthProvider()
+      );
+    }
+  }
 };
 </script>
