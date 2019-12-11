@@ -10,6 +10,11 @@ export default new Vuex.Store({
     status: null,
     error: null
   },
+  getters: {
+    user(state) {
+      return state.user
+    }
+  },
   mutations: {
     setUser(state, payload) {
       state.user = payload
@@ -37,7 +42,6 @@ export default new Vuex.Store({
           // user will have uid will be updated to the state
           commit('setUser', response.user.uid)
           commit('setStatus', 'success')
-          commit('setError', null)
         })
         .catch((error) => {
           commit('setStatus', 'failure')
@@ -50,11 +54,29 @@ export default new Vuex.Store({
     }, payload) {
       firebase.auth().signInWithPopup(payload)
         .then((response) => {
+          /* eslint-disable no-console */
+
+          console.log(response.user.uid)
           commit('setUser', response.user.uid)
+          commit('setStatus', 'success')
+        })
+        .catch((error) => {
+          commit('setStatus', 'failure')
+          commit('setError', error.message)
+        })
+    },
+    signOutAction({
+      commit
+    }) {
+      firebase.auth().signOut()
+        .then(() => {
+          commit('setUser', null)
           commit('setStatus', 'success')
           commit('setError', null)
         })
         .catch((error) => {
+          /* eslint-disable no-console */
+          console.log(error)
           commit('setStatus', 'failure')
           commit('setError', error.message)
         })

@@ -6,6 +6,7 @@
           <v-row justify="center">
             <v-col cols="11">
               <v-btn
+                @click="github()"
                 class="mb-3 text-lowercase"
                 large
                 block

@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-col cols="6" lg="5">
+    <v-col lg="5" sm="6" xs="12">
       <v-sheet>
         <v-text-field
           placeholder="input a url"
